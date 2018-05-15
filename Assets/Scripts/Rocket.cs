@@ -19,6 +19,7 @@ public class Rocket : MonoBehaviour {
 
     enum State { Alive, Dying, Transcending };
     State currentState = State.Alive;
+    Boolean collisionsDisabled = false;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +46,15 @@ public class Rocket : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
             RotateRocketRight();
+        }
+
+        if (Debug.isDebugBuild) {
+            if (Input.GetKey(KeyCode.N)) {
+                WinLevel();
+            }
+            if (Input.GetKey(KeyCode.C)) {
+                collisionsDisabled = !collisionsDisabled;
+            }
         }
     }
 
@@ -82,7 +92,7 @@ public class Rocket : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (currentState != State.Alive) {
+        if (currentState != State.Alive || collisionsDisabled) {
             return;
         }
 
