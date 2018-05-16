@@ -459,7 +459,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 9.54
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
       propertyPath: m_LocalPosition.z
@@ -467,19 +467,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.012318063
+      value: 0.052335896
       objectReference: {fileID: 0}
     - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.0000075224093
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0.00000024593467
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.9999241
+      value: 0.9986295
       objectReference: {fileID: 0}
     - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
       propertyPath: m_RootOrder
@@ -494,6 +494,15 @@ Prefab:
         type: 2}
       propertyPath: m_AllowDynamicResolution
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20824478329974022, guid: 69d4cd962e001474c9cce4875bad4659,
+        type: 2}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653494608195204, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 69d4cd962e001474c9cce4875bad4659, type: 2}
