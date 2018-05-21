@@ -36,11 +36,9 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        UpdateGyroBaseRotation();
         if (currentState == State.Alive) {
             ProcessInput();
         }
-
 	}
 
     private void ProcessInput() {
@@ -49,31 +47,30 @@ public class Rocket : MonoBehaviour {
             if (Input.GetTouch(0).pressure > 0) {
                 ThrustRocket();
             }
-            if (Input.GetTouch(0).phase == TouchPhase.Began) {
-                printDebug();
+            if (Input.GetTouch(0).phase == TouchPhase.Ended) {
+                StopRocketThrust();
             }
-            return;
-        }
-
-        if (Input.GetKey(KeyCode.Space)) {
-            ThrustRocket();
         } else {
-            StopRocketThrust();
-        }
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
-            RotateRocketLeft();
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
-            RotateRocketRight();
-        }
-
-        if (Debug.isDebugBuild) {
-            if (Input.GetKey(KeyCode.N)) {
-                WinLevel();
+            if (Input.GetKey(KeyCode.Space)) {
+                ThrustRocket();
+            } else {
+                StopRocketThrust();
             }
-            if (Input.GetKey(KeyCode.C)) {
-                collisionsDisabled = !collisionsDisabled;
+
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) {
+                RotateRocketLeft();
+            } else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) {
+                RotateRocketRight();
+            }
+
+            if (Debug.isDebugBuild) {
+                if (Input.GetKey(KeyCode.N)) {
+                    WinLevel();
+                }
+                if (Input.GetKey(KeyCode.C)) {
+                    collisionsDisabled = !collisionsDisabled;
+                }
             }
         }
     }
@@ -160,28 +157,6 @@ public class Rocket : MonoBehaviour {
     }
 
     private void RotateFromGyro() {
-        //print("Orientation: " + Screen.orientation);
-        float a = averageRotation - Input.gyro.attitude.eulerAngles.z;
-        if (a < -1 || a > 1) {
-            Rotate(a);
-        }
-    }
-
-    private void printDebug(){
-        print("Attitude: " + Input.gyro.attitude.eulerAngles);
-    }
-
-    private void UpdateGyroBaseRotation() {
-        
-        for (int i = 0; i < rotationValues.Length -1 ; i ++) {
-            rotationValues[i] = rotationValues[i + 1];
-        }
-        float a = 0;
-        rotationValues[rotationValues.Length - 1] = Input.gyro.attitude.eulerAngles.z;
-        for (int i = 0; i < rotationValues.Length; i++) {
-            a += rotationValues[i];
-        }
-        averageRotation = a / rotationValues.Length;
-        print(averageRotation - Input.gyro.attitude.eulerAngles.z);
+        Rotate(Input.gyro.rotationRate.z*100);
     }
 }
