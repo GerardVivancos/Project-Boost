@@ -35,6 +35,19 @@ public class Rocket : MonoBehaviour {
 	}
 
     private void ProcessInput() {
+        if (SystemInfo.supportsGyroscope) {
+            RotateFromGyro();
+            if (Input.GetTouch(0).phase == TouchPhase.Began) {
+                ThrustRocket();
+            }
+            if (Input.GetTouch(0).phase == TouchPhase.Ended) {
+                StopRocketThrust();
+            }
+            return;
+        }
+
+
+
         if (Input.GetKey(KeyCode.Space)) {
             ThrustRocket();
         } else {
@@ -139,5 +152,9 @@ public class Rocket : MonoBehaviour {
     private void LoadNextScene()
     {
         SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+    }
+
+    private void RotateFromGyro() {
+        Rotate(Input.gyro.rotationRateUnbiased.z);
     }
 }
